@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="VersionInformation.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <WSTPRootDir>$(WolframInstallationDirectory)\SystemFiles\Links\WSTP\DeveloperKit</WSTPRootDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ExecutablePath Condition=" '$(PlatformName)'=='Win32' ">$(WolframInstallationDirectory)\SystemFiles\Links\WSTP\DeveloperKit\Windows\CompilerAdditions;$(ExecutablePath)</ExecutablePath>
+    <ExecutablePath Condition=" '$(PlatformName)'=='x64' ">$(WolframInstallationDirectory)\SystemFiles\Links\WSTP\DeveloperKit\Windows-x86-64\CompilerAdditions;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>WSINTERFACE=4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition=" '$(PlatformName)'=='Win32' ">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(WSTPRootDir)\Windows\CompilerAdditions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(WSTPRootDir)\Windows\CompilerAdditions;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wstp32i4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition=" '$(PlatformName)'=='x64' ">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(WSTPRootDir)\Windows-x86-64\CompilerAdditions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(WSTPRootDir)\Windows-x86-64\CompilerAdditions;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wstp64i4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>
